@@ -49,16 +49,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        homeViewModel.locations.observe(this, Observer { countries ->
+        homeViewModel.locations.observe(viewLifecycleOwner, Observer { countries ->
             countries?.let {
                 locationsList.visibility = View.VISIBLE
                 locationAdapter.updateLocations(it)
             }
         })
-        homeViewModel.locationsLoadError.observe(this, Observer { isError ->
+        homeViewModel.locationsLoadError.observe(viewLifecycleOwner, Observer { isError ->
             isError?.let { list_error.visibility = if (it) View.VISIBLE else View.GONE }
         })
-        homeViewModel.loading.observe(this, Observer { isLoading ->
+        homeViewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
             isLoading?.let {
                 loading_view.visibility = if (it) View.VISIBLE else View.GONE
                 if (it) {

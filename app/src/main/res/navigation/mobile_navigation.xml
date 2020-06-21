@@ -9,17 +9,32 @@
         android:id="@+id/navigation_home"
         android:name="br.com.homartapp.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+
+        <action
+            android:id="@+id/action_navigation_home_to_locationDetailsActivity"
+            app:destination="@id/navigation_locationDetailActivity" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="br.com.homartapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_map"
+        android:name="br.com.homartapp.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="br.com.homartapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_profile"
+        android:name="br.com.homartapp.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_locationDetail"
+        android:name="br.com.homartapp.ui.locationdetail.LocationDetailFragment"
+        android:label="@string/title_activity_location_detail"
+        android:layout="@layout/location_detail_fragment" />
+    <activity
+        android:id="@+id/navigation_locationDetailActivity"
+        android:name="br.com.homartapp.ui.LocationDetailActivity"
+        android:label="activity_details_header"
+        tools:layout="@layout/location_detail_activity" />
 </navigation>
