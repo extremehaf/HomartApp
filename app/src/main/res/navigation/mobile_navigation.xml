@@ -33,8 +33,12 @@
         android:label="@string/title_activity_location_detail"
         android:layout="@layout/location_detail_fragment" />
     <activity
-        android:id="@+id/navigation_locationDetailActivity"
-        android:name="br.com.homartapp.ui.LocationDetailActivity"
-        android:label="activity_details_header"
-        tools:layout="@layout/location_detail_activity" />
+    android:id="@+id/navigation_locationDetailActivity"
+    android:name="br.com.homartapp.ui.LocationDetailActivity"
+    android:label="activity_details_header"
+        tools:layout="@layout/location_detail_activity" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </activity>
 </navigation>

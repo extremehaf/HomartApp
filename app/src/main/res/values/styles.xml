@@ -11,7 +11,11 @@
     <style name="labelDefaut" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/open_sans_regular</item>
     </style>
-
+    <style name="PageTitle">
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
     <style name="Title">
         <item name="android:textColor">#14adb8</item>
         <item name="android:textSize">16sp</item>
@@ -27,6 +31,11 @@
     <style name="ratingValue">
         <item name="android:textColor">#000</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+    </style>
+    <style name="ratingValueWithe">
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>
     </style>
 

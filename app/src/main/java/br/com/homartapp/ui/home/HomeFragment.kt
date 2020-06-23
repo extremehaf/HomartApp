@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import br.com.homartapp.R
 import br.com.homartapp.data.model.Location
+import br.com.homartapp.ui.LocationDetailActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -31,18 +31,22 @@ class HomeFragment : Fragment() {
             .of(this)
             .get(HomeViewModel::class.java)
         homeViewModel.refresh()
+
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val locationsList: RecyclerView = root.findViewById(R.id.locationsList)
+
         val swipeRefreshLayout: SwipeRefreshLayout = root.findViewById(R.id.swipeRefreshLayout)
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = false
             homeViewModel.refresh()
         }
+
+        val locationsList: RecyclerView = root.findViewById(R.id.locationsList)
+        val grid = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        grid.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
         locationsList.apply {
-            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            layoutManager = grid
             adapter = locationAdapter
         }
-
         observeViewModel()
 
         return root
