@@ -1,17 +1,20 @@
 package br.com.homartapp.data.remote
 
+import br.com.homartapp.data.model.Day
+
 class LocationDetailResponse(
     val name: String,
-    val review: Long,
+    val review: Double,
     val type: String,
-    val id: Long,
+    val id: Int,
     val about: String,
-    val schedule: Schedule,
+    val schedule: Any,
     val phone: String,
     val adress: String
 )
 
 data class Schedule(
+    val sunday: Day,
     val monday: Day,
     val tuesday: Day,
     val wednesday: Day,

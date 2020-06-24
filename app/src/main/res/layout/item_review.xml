@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="review"
+            type="br.com.homartapp.data.model.LocationReview" />
+
+        <variable
+            name="imageReviewUrl"
+            type="String" />
+    </data>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="30dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/shape_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@color/white"
+        android:gravity="top">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/myCardViewProfile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="30dp"
+            app:strokeWidth="3dp"
+            app:rippleColor="@color/pinkish_grey"
+            app:strokeColor="@color/white">
+
+            <ImageView
+                android:id="@+id/roundedimag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                tools:imageReviewUrl="@{review.foto}" />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp">
+        <androidx.appcompat.widget.AppCompatRatingBar
+                        android:id="@+id/appCompatRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/ratingBarSmall"
+                        android:numStars="5"
+                        android:rating='@{(float)review.review}'
+                        android:stepSize="0.1"
+                        style="@style/customRatingBarSmall"/>
+                    <TextView
+                        android:id="@+id/title"
+                        style="@style/Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="@{review.title}" />
+                    <TextView
+                        android:id="@+id/content"
+                        style="@style/subTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:minLines="2"
+                        android:text="@{review.descrition}"/>
+
+                    <TextView
+                        android:id="@+id/local"
+                        style="@style/reviewLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:text="@{review.local}" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

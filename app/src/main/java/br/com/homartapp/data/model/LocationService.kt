@@ -19,7 +19,7 @@ class LocationService {
         return api.getLocations()
     }
 
-    fun getLocationDetail(id: Integer): Single<LocationDetailResponse?>? {
+    fun getLocationDetail(id: Int): Single<LocationDetailResponse?>? {
         return api.getLocationDetails(id)
     }
 }

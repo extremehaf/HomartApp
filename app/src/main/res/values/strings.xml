@@ -1,9 +1,19 @@
 <resources>
-    <string name="app_name">HomartApp</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name" translatable="false">HomartApp</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_map">Map</string>
+    <string name="title_profile">Profile</string>
 
 
-    <string name="error_text">Erro</string>
+    <string name="error_text" translatable="false">Erro</string>
+    <string name="title_activity_location_detail" translatable="false">LocationDetailActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="fotos">Pictures</string>
+    <string name="sobre">About</string>
+    <string name="reviews">Reviews</string>
+    <string name="closed">Closed</string>
+    <string name="daysConditional">until</string>
+    <string name="dayConditional">and</string>
+    <string name="timeConditional">to</string>
+    <string name="text_all_reviews">see all the XX reviews</string>
 </resources>
