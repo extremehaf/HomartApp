@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="reviews">Reviews</string>
+    <string name="sobre">Sobre</string>
+    <string name="fotos">Fotos</string>
+    <string name="action_settings">Configurações</string>
+    <string name="title_profile">Perfil</string>
+    <string name="title_map">Mapa</string>
+    <string name="closed">Fechado</string>
+    <string name="daysConditional">a</string>
+    <string name="dayConditional">e</string>
+    <string name="timeConditional">às</string>
+    <string name="text_all_reviews" translatable="false">ver todos os XX reviews</string>
+</resources>

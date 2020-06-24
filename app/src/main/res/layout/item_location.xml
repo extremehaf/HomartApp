@@ -22,15 +22,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imageLocation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
+                android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
-                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
                 app:imageUrl="@{imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +51,7 @@
                 android:id="@+id/type"
                 style="@style/subTitle"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@{location.type}"
                 app:layout_constraintStart_toStartOf="parent"
@@ -61,34 +62,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="16dp"
-
+                android:gravity="center"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/type">
 
                 <androidx.appcompat.widget.AppCompatRatingBar
                     android:id="@+id/appCompatRatingBar"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    style="@style/customRatingBarSmall"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/ratingBarSmall"
                     android:numStars="5"
                     android:rating='@{(float)location.review}'
                     android:stepSize="0.1" />
+
+                <TextView
+                    android:id="@+id/textRatingValue"
+                    style="@style/ratingValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text='@{String.format("%.2f", location.review)}' />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <TextView
-                android:id="@+id/textRatingValue"
-                style="@style/ratingValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintStart_toEndOf="@+id/appCompatRatingBarContainer"
-                app:layout_constraintTop_toTopOf="@+id/appCompatRatingBarContainer"
-                tools:text="1.0" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

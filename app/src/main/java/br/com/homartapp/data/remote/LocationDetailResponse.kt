@@ -8,7 +8,7 @@ class LocationDetailResponse(
     val type: String,
     val id: Int,
     val about: String,
-    val schedule: ArrayList<Schedule>,
+    val schedule: Any,
     val phone: String,
     val adress: String
 )
