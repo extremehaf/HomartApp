@@ -1,12 +1,20 @@
 package br.com.homartapp.ui.locationdetail
 
+import android.graphics.drawable.ColorDrawable
+import android.opengl.Visibility
 import android.os.Bundle
 import android.telephony.PhoneNumberUtils
+import android.text.Layout
 import android.view.*
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.homartapp.R
@@ -14,10 +22,12 @@ import br.com.homartapp.data.model.LocationDetail
 import br.com.homartapp.data.model.LocationReview
 import br.com.homartapp.ui.LocationDetailActivity
 import br.com.homartapp.ui.LocationDetailActivityArgs
+import br.com.homartapp.ui.MainActivity
 import br.com.homartapp.util.isSequence
 import br.com.homartapp.util.loadImage
 import br.com.homartapp.util.parseDayOfWeek
 import br.com.homartapp.util.parseDayOfWeekInt
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.content_scrolling.*
 import kotlinx.android.synthetic.main.location_detail_fragment.*
 import java.lang.StringBuilder
@@ -46,7 +56,24 @@ class LocationDetailFragment : Fragment() {
             viewModel.load(id)
         }
         val root = inflater.inflate(R.layout.location_detail_fragment, container, false)
+
         val toolbar: Toolbar = root.findViewById(R.id.toolbar)
+//
+//        val navView: BottomNavigationView = root.findViewById(R.id.nav_view_detail)
+//        val navController = (activity as LocationDetailActivity).findNavController(R.id.nav_host_fragment)
+//        // Passing each menu ID as a set of Ids because each
+//        // menu should be considered as top level destinations.
+//        val appBarConfiguration = AppBarConfiguration(setOf(
+//            R.id.navigation_home,
+//            R.id.navigation_map,
+//            R.id.navigation_profile
+//        ))
+//        (activity as LocationDetailActivity).setupActionBarWithNavController(navController, appBarConfiguration)
+//        navView.setupWithNavController(navController)
+        (activity as LocationDetailActivity).setSupportActionBar(toolbar)
+        (activity as LocationDetailActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as LocationDetailActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+        (activity as LocationDetailActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val fotosList: RecyclerView = root.findViewById(R.id.list_fotos)
         val layout = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
@@ -54,25 +81,21 @@ class LocationDetailFragment : Fragment() {
             layoutManager = layout
             adapter = fotosAdapter
         }
+
         val reviewsList: RecyclerView = root.findViewById(R.id.list_reviews)
         val layoutReview = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         reviewsList.apply {
             layoutManager = layoutReview
             adapter = locationReviewAdapter
         }
-        (activity as LocationDetailActivity).setSupportActionBar(toolbar)
-        (activity as LocationDetailActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as LocationDetailActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-        (activity as LocationDetailActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
 
         observeViewModel()
         return root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_location_detail, menu)
-
         super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_location_detail, menu)
     }
 
     private fun observeViewModel() {
@@ -90,7 +113,7 @@ class LocationDetailFragment : Fragment() {
                 textTime.text = getScheduleString(it)
 
                 textAllReviews.text = getString(R.string.text_all_reviews)
-                    .replace("XX",it.totalReviews.toString())
+                    .replace("XX", it.totalReviews.toString())
             }
         })
         viewModel.locationsLoadError.observe(viewLifecycleOwner, Observer { isError ->
@@ -123,13 +146,62 @@ class LocationDetailFragment : Fragment() {
         val list = ArrayList<Map<String, String>>()
         var context = HashMap<String, String>()
 
-        list.add(hashMapOf(Pair("monday","${detail.schedule.monday?.open} - ${detail.schedule.monday?.close}")))
-        list.add(hashMapOf(Pair("tuesday","${detail.schedule.tuesday?.open} - ${detail.schedule.tuesday?.close}")))
-        list.add(hashMapOf(Pair("wednesday","${detail.schedule.wednesday?.open} - ${detail.schedule.wednesday?.close}")))
-        list.add(hashMapOf(Pair("thursday","${detail.schedule.thursday?.open} - ${detail.schedule.thursday?.close}")))
-        list.add(hashMapOf(Pair("friday","${detail.schedule.friday?.open} - ${detail.schedule.friday?.close}")))
-        list.add(hashMapOf(Pair("saturday","${detail.schedule.saturday?.open} - ${detail.schedule.saturday?.close}")))
-        list.add(hashMapOf(Pair("sunday","${detail.schedule.sunday?.open} - ${detail.schedule.sunday?.close}")))
+        list.add(
+            hashMapOf(
+                Pair(
+                    "monday",
+                    "${detail.schedule.monday?.open} - ${detail.schedule.monday?.close}"
+                )
+            )
+        )
+        list.add(
+            hashMapOf(
+                Pair(
+                    "tuesday",
+                    "${detail.schedule.tuesday?.open} - ${detail.schedule.tuesday?.close}"
+                )
+            )
+        )
+        list.add(
+            hashMapOf(
+                Pair(
+                    "wednesday",
+                    "${detail.schedule.wednesday?.open} - ${detail.schedule.wednesday?.close}"
+                )
+            )
+        )
+        list.add(
+            hashMapOf(
+                Pair(
+                    "thursday",
+                    "${detail.schedule.thursday?.open} - ${detail.schedule.thursday?.close}"
+                )
+            )
+        )
+        list.add(
+            hashMapOf(
+                Pair(
+                    "friday",
+                    "${detail.schedule.friday?.open} - ${detail.schedule.friday?.close}"
+                )
+            )
+        )
+        list.add(
+            hashMapOf(
+                Pair(
+                    "saturday",
+                    "${detail.schedule.saturday?.open} - ${detail.schedule.saturday?.close}"
+                )
+            )
+        )
+        list.add(
+            hashMapOf(
+                Pair(
+                    "sunday",
+                    "${detail.schedule.sunday?.open} - ${detail.schedule.sunday?.close}"
+                )
+            )
+        )
 
         val diasAgrupados = list.asSequence()
             .flatMap {

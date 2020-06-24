@@ -4,8 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.Window
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import br.com.homartapp.R
 import br.com.homartapp.ui.locationdetail.LocationDetailFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class LocationDetailActivity : AppCompatActivity() {
 
@@ -25,8 +30,6 @@ class LocationDetailActivity : AppCompatActivity() {
                 .replace(R.id.container, fragment)
                 .commitNow()
         }
-
-
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
@@ -38,5 +41,4 @@ class LocationDetailActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_location_detail, menu)
         return true
     }
-
 }
