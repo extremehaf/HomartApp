@@ -1,9 +1,11 @@
 package br.com.homartapp.ui.home
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -13,6 +15,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import br.com.homartapp.R
 import br.com.homartapp.data.model.Location
 import br.com.homartapp.ui.LocationDetailActivity
+import br.com.homartapp.ui.MainActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -31,7 +34,7 @@ class HomeFragment : Fragment() {
             .of(this)
             .get(HomeViewModel::class.java)
         homeViewModel.refresh()
-
+        setHasOptionsMenu(true);
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         val swipeRefreshLayout: SwipeRefreshLayout = root.findViewById(R.id.swipeRefreshLayout)
@@ -47,8 +50,8 @@ class HomeFragment : Fragment() {
             layoutManager = grid
             adapter = locationAdapter
         }
-        observeViewModel()
 
+        observeViewModel()
         return root
     }
 
