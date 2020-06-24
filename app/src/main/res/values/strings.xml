@@ -16,4 +16,7 @@
     <string name="dayConditional">and</string>
     <string name="timeConditional">to</string>
     <string name="text_all_reviews">see all the XX reviews</string>
+
+    <string name="item_element_text" translatable="false">This is element #</string>
+    <string name="middle" translatable="false">This is the middle!</string>
 </resources>

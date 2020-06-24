@@ -25,6 +25,8 @@ class LocationsRecyclerViewAdapter(var locations: ArrayList<Location>) :
     override fun getItemCount() = locations.size
     override fun onBindViewHolder(holder: LocationsViewHolder, position: Int) {
         val location: Location = locations[position]
+
+        holder.mIsInTheMiddle = position == (locations.size / 2)
         holder.bind(location)
         holder.itemView.setOnClickListener {
             Navigation.findNavController(it)
@@ -39,6 +41,9 @@ class LocationsRecyclerViewAdapter(var locations: ArrayList<Location>) :
 
 class LocationsViewHolder(val binding: ItemLocationBinding1) :
     RecyclerView.ViewHolder(binding.root) {
+
+    // We'll use this field to showcase matching the holder from the test.
+    var mIsInTheMiddle = false
 
     fun bind(location: Location) {
         binding.location = location
