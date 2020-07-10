@@ -1,4 +1,4 @@
-# HotmartSampleApp
+# SampleApp
 
 **Bibliotecas utilizadas**
 - AndroidX
